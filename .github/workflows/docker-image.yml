@@ -23,5 +23,12 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag chamodshehanka/node-test:$(date +%s)
       
-    - name: Docker Push
-      run: docker push chamodshehanka/node-test
+    - name: Publish to docker hub
+      run: docker/build-push-action@v1
+      with:
+      username: ${{ secrets.DOCKER_USERNAME }}
+      password: {{ secrets.DOCKER_PASSWORD }}
+      repository: nour397/ITP-GitHub-intro
+      
+      
+      
